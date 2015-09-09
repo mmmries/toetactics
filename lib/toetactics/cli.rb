@@ -3,7 +3,7 @@ require "thor"
 module Toetactics
   class CLI < ::Thor
     class_option :url, :alias => [:u], :type => :string, :default => "ws://games.riesd.com/socket/websocket?vsn=1.0.0"
-    class_option :ai, :type => :string, :default => false
+    class_option :ai, :type => :string, :default => "none"
 
     desc "play GAME_ID", "try to join and play a game of tic-tac-toe"
     def play(game_id)
