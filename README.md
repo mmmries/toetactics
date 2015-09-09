@@ -5,7 +5,7 @@ This is a little library that can act as a programmatic client for playing TicTa
 To start a game clone this repository locally, bundle install and then run a command like:
 
 ```
-ruby -Ilib exe/toetactics play ws://games.riesd.com/socket/websocket?vsn=1.0.0 game5
+ruby -Ilib exe/toetactics play game5
 ```
 
 You will see a lot of output about the messages received and sent by this client so you can decide how to customize it.
