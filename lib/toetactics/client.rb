@@ -7,9 +7,10 @@ module Toetactics
     include Celluloid
     include Celluloid::Logger
 
-    attr_reader :client, :role, :token, :topic
+    attr_reader :ai, :client, :role, :token, :topic
 
-    def initialize(uri, topic)
+    def initialize(uri, topic, ai)
+      @ai = ai
       @client = Celluloid::WebSocket::Client.new(uri, current_actor)
       @counter = 0
       @role = nil
@@ -23,14 +24,19 @@ module Toetactics
     end
 
     def join
-      send({
+      message = {
         topic: topic,
         event: "phx_join",
         payload: {
           token: token,
           name: "Anonymous",
         }
-      })
+      }
+      if ai
+        message[:payload][:ai] = ai
+      end
+
+      send(message)
     end
 
     def move(square)
